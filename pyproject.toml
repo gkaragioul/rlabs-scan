@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rlabs-scan"
+version = "0.1.0"
+description = "Local, evidence-led Windows PE compatibility scanner for RLabs."
+requires-python = ">=3.12"
+license = { text = "MIT" }
+
+[project.scripts]
+rlabs = "rlabs_scan.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
