@@ -1,10 +1,39 @@
 # rlabs-scan
 
-`rlabs-scan` is a small, local command-line tool for inspecting Windows `.exe` files and producing an evidence-led JSON compatibility report.
+**[Check your game in the browser](https://recompilelabs.com/#scanner)** — free to use, no installation or account required.
+
+RLabs Scan inspects Windows executable metadata to help explain architecture, graphics-library dependencies, and runtime requirements. The website is the easiest starting point; this repository contains the original Python command-line scanner for developers and advanced workflows.
+
+## Start with your game folder
+
+1. Open [recompilelabs.com](https://recompilelabs.com/#scanner).
+2. Click **Choose game folder** and select the game's installation folder.
+3. If the folder contains one executable, it is inspected automatically. If several are found, choose the one you normally launch and click **Check this executable**.
+4. Read the findings, then optionally **Save report** or **Copy summary**.
+
+The browser lists filenames, then reads only the selected executable's contents on your device. It does not upload the game, run it, or modify files. A 50 GB installation does not mean a 50 GB upload or scan. Current limits are 128 MB per executable, 30,000 selected files, and a 30-second scan timeout. Listing a folder with many files can take time before scanning starts.
+
+Findings are preliminary: the browser cannot check installed Windows components or prove gameplay, Windows-on-ARM, or Proton compatibility. A dependency absent from the selected folder may already be installed in Windows. The scan uses fixed inspection rules, not an AI service.
+
+### Browser and command-line versions
+
+| | Website | This repository's Python CLI |
+| --- | --- | --- |
+| Starting point | Choose a game folder | Specify an executable path |
+| Processing | Locally in your browser | Locally in Python |
+| Results | Readable findings, copy, JSON download | JSON report |
+| Report format | `rlabs-browser-scan`, version 1 | CLI observation and compatibility skeleton |
+| Sharing | Manual; filename and findings, no folder paths | Manual; review paths and metadata before sharing |
+
+The website uses a separate JavaScript implementation maintained with the site; it does not run the Python CLI. Its export is supporting evidence, not a validated [hub compatibility record](https://github.com/gkaragioul/game-preservation-hub/tree/main/compatibility). Automatic inspection of every executable and automatic report submission are not implemented.
+
+Explore the [preservation hub](https://github.com/gkaragioul/game-preservation-hub) for projects, shared records, and contribution guidance. Report browser or CLI issues in [this repository's issue tracker](https://github.com/gkaragioul/rlabs-scan/issues), identifying which version you used.
+
+## Command-line scanner
 
 It never executes, loads, patches, uploads, or modifies the selected executable. v0.1 reads Portable Executable metadata only.
 
-## Install
+### Install (advanced)
 
 Requires Python 3.12 or newer.
 
