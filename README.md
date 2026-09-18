@@ -23,9 +23,9 @@ Findings are preliminary: the browser cannot check installed Windows components 
 | Processing | Locally in your browser | Locally in Python |
 | Results | Readable findings, copy, JSON download | JSON report |
 | Report format | `rlabs-browser-scan`, version 1 | CLI observation and compatibility skeleton |
-| Sharing | Manual; filename and findings, no folder paths | Manual; review paths and metadata before sharing |
+| Sharing | Automatic minimized technical report; richer local export can be shared manually | Manual; review paths and metadata before sharing |
 
-The website uses a separate JavaScript implementation maintained with the site; it does not run the Python CLI. Its export is supporting evidence, not a validated [hub compatibility record](https://github.com/gkaragioul/game-preservation-hub/tree/main/compatibility). Automatic inspection of every executable and automatic report submission are not implemented.
+The website uses a separate JavaScript implementation maintained with the site; it does not run the Python CLI. Its export is supporting evidence, not a validated [hub compatibility record](https://github.com/gkaragioul/game-preservation-hub/tree/main/compatibility). The website automatically submits a small technical report, disclosed before folder selection: executable SHA-256, architecture, import count and allowlisted component observations. It excludes game files, filenames, paths and usernames. A hash identifies a build; this is not an anonymity guarantee. Automatic inspection of every executable is not implemented.
 
 Explore the [preservation hub](https://github.com/gkaragioul/game-preservation-hub) for projects, shared records, and contribution guidance. Report browser or CLI issues in [this repository's issue tracker](https://github.com/gkaragioul/rlabs-scan/issues), identifying which version you used.
 
@@ -80,9 +80,11 @@ DirectX generation, SIMD, driver/service, Windows-on-ARM, Proton, and modern-Win
 
 ## Privacy and boundaries
 
-The scanner makes no network request and sends no telemetry. A report may include local paths, executable names, hashes, and DLL names; review it before sharing. Do not use it to bypass access controls or distribute proprietary software.
+The Python CLI makes no network request and sends no telemetry. Its report may include local paths, executable names, hashes, and DLL names; review it before sharing. The website has the automatic technical-report submission described above. Do not use either version to bypass access controls or distribute proprietary software.
 
 ## Development
+
+Before pushing, install the local hook and follow [publication checks](docs/PUBLICATION.md). Private implementation and internal workspace exports must remain outside this public repository. Pull requests must pass the publication-boundary check before merging.
 
 ```powershell
 $env:PYTHONPATH = "src"
